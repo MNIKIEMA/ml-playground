@@ -1,10 +1,10 @@
 from importlib.metadata import version
 
-from python_package_template import main
+from ml_playground import main
 
 
 def test_version():
-    assert version("python_package_template") == "0.1.0"
+    assert version("ml-playground") == "0.1.0"
 
 
 def test_main():
