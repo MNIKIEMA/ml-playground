@@ -6,13 +6,17 @@ readme = "README.md"
 authors = [
     { name = "MNIKIEMA", email = "nikiemamahamadi01@gmail.com" }
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
+    "accelerate>=1.13.0",
+    "datasets>=4.8.4",
+    "gliner>=0.2.24",
     "ipykernel>=7.2.0",
+    "jaxtyping>=0.3.9",
     "nltk>=3.9.3",
     "spacy>=3.8.11",
-    "torch>=2.10.0",
-    "transformers>=5.3.0",
+    "torch>=2.8",
+    "transformers>=4.57.6, <5.0.0",
 ]
 
 [project.scripts]
@@ -40,6 +44,16 @@ exclude = [
     ".venv",
     "build",
     "dist",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu128" },
 ]
 
 [tool.ruff.lint]
