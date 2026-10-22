@@ -7,16 +7,14 @@ authors = [
     { name = "MNIKIEMA", email = "nikiemamahamadi01@gmail.com" }
 ]
 requires-python = ">=3.12"
+# Shared core: what almost every notebook needs. Experiment-specific stacks live in
+# [dependency-groups] below, e.g. `uv sync --group audio --group hf`.
 dependencies = [
-    "accelerate>=1.13.0",
     "datasets>=4.8.4",
-    "gliner>=0.2.24",
     "ipykernel>=7.2.0",
     "jaxtyping>=0.3.9",
-    "nltk>=3.9.3",
-    "spacy>=3.8.11",
+    "numpy",
     "torch>=2.8",
-    "transformers>=4.57.6, <5.0.0",
 ]
 
 [project.scripts]
@@ -34,6 +32,43 @@ dev = [
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "ruff>=0.14.10",
+]
+# Audio_basics
+audio = [
+    "librosa>=0.11.0",
+    "matplotlib>=3.3.2",
+    "scipy>=1.17.1",
+    "soundfile",
+]
+# ASR_with_Wav2Vec, contrastive_loss
+hf = [
+    "accelerate>=1.13.0",
+    "evaluate",
+    "jiwer",
+    "pandas",
+    "transformers>=4.57.6, <5.0.0",
+]
+# ner_with_gliner, repro.py
+nlp = [
+    "gliner>=0.2.24",
+    "nltk>=3.9.3",
+    "spacy>=3.8.11",
+]
+# ASR_with_NeMo, Parakeet_Finetune, asr-finetune-nemotron-*
+nemo = [
+    "nemo-toolkit[asr]",
+    "onnxruntime-gpu>=1.31.0",
+    { include-group = "audio" },
+]
+# async
+web = [
+    "aiohttp",
+    "requests>=2.32.5",
+]
+# run_monty_sympy.py (also runnable standalone via its inline script metadata)
+monty = [
+    "pydantic-monty>=0.0.23",
+    "sympy",
 ]
 
 

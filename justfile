@@ -8,8 +8,12 @@ clean:
     rm -rf .venv/
 
 
-# install the dependencies
-install:
+# install core + dev deps, plus any experiment groups: `just install audio hf`
+install *groups:
+    uv sync {{ prepend("--group ", groups) }}
+
+# install every group (includes the heavy NeMo stack)
+install-all:
     uv sync --all-groups
 
 
